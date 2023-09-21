@@ -1,0 +1,6 @@
+src/
+.eslintignore
+.eslintrc
+.prettierrc.js
+babel.config.json
+tsconfig.json

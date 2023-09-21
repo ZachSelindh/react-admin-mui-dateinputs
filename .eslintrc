@@ -1,0 +1,8 @@
+{
+    "extends": ["airbnb-typescript", "airbnb", "react-app", "plugin:prettier/recommended"],
+    "plugins": ["@typescript-eslint", "import", "jsx-a11y", "html", "prettier", "react", "react-hooks"]
+    // "rules": {
+    //     "react/jsx-filename-extension": 0,
+    //     "react/forbid-prop-types": 0
+    // }
+}
