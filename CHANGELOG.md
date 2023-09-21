@@ -1,6 +1,9 @@
 # react-admin-mui-dateinputs Changelog
 
-## 1.0.2
+## 1.0.4
+
+-   Minor changes to README
+## 1.0.3
 
 -   Rename package from react-admin-mui-datepickers
 

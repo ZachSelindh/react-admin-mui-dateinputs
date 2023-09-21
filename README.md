@@ -38,9 +38,9 @@ export const TestForm = () => {
 };
 ```
 
-These pickers use MUI-X's <LocalizationProvider>, which is supplied their `AdapterDateFns` as a dateAdapter. Dates are formatted as ISO strings by default, though props `parse` and `format` are passed to react-admin's [useInput hook](https://marmelab.com/react-admin/useInput.html), allowing date formats and input values to be configured.
+These pickers use MUI-X's `LocalizationProvider`, which is supplied their `AdapterDateFns` as a dateAdapter. Dates are formatted as ISO strings by default, though props `parse` and `format` are passed to react-admin's [useInput hook](https://marmelab.com/react-admin/useInput.html), allowing date formats and input values to be configured.
 
-All three inputs accept most react-admin input props, including `validate`, `defaultValue`, `fullWidth`, `helperText`, `sx`, etc., and (obviously) require `source` and `label` to be defined to work correctly as form inputs or filters.
+All three inputs accept most react-admin input props, including `validate`, `defaultValue`, `fullWidth`, `helperText`, `sx`, etc., and (obviously) require `source` and `label` to be defined in order to work correctly as form inputs or filters.
 
 Additional functionality can be derived from the prop functions `onOpen` and `onClose`, which are called during their corresponding events. See above example for a simple demonstration.
 
