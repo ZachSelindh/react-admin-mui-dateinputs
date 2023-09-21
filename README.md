@@ -1,11 +1,11 @@
-# react-admin-mui-datepickers
+# react-admin-mui-dateinputs
 
 MUI date/time pickers for use in react-admin applications, compatible with react-admin v4 and MUI v5.
 
 ## Installation
 
 ```
-npm install react-admin-mui-datepickers --save
+npm install react-admin-mui-dateinputs --save
 ```
 
 ## Usage
@@ -17,7 +17,7 @@ This package provides a DateInput, TimeInput, and DateTimeInput based on MUI v5 
 ```jsx
 import React from 'react';
 import { Create, TextInput, SimpleForm } from 'react-admin';
-import { DateTimeInput } from 'react-admin-mui-datepickers';
+import { DateTimeInput } from 'react-admin-mui-dateinputs';
 
 export const TestForm = () => {
     const logWhenOpen = val => console.log('Opened!:', value);

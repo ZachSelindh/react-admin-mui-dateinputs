@@ -1,4 +1,8 @@
-# react-admin-mui-datepickers Changelog
+# react-admin-mui-dateinputs Changelog
+
+## 1.0.2
+
+-   Rename package from react-admin-mui-datepickers
 
 ## 1.0.2
 
