@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useInput, FieldTitle, sanitizeInputRestProps, InputHelperText } from 'react-admin';
@@ -7,92 +7,27 @@ import Event from '@mui/icons-material/Event';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import CustomActionBar from './CustomActionBar';
-
-// This code copied from WiXSL/react-admin-date-inputs/blob/mui-pickers-v3/ because the repo host key was not maintained
-
-const leftPad =
-    (nb = 2) =>
-    value =>
-        ('0'.repeat(nb) + value).slice(-nb);
-const leftPad4 = leftPad(4);
-const leftPad2 = leftPad(2);
-
-/**
- * @param {Date} value value to convert
- * @returns {String} A standardized datetime (yyyy-MM-ddThh:mm), to be passed to an <input type="datetime-local" />
- */
-const convertDateToString = value => {
-    if (!(value instanceof Date) || isNaN(value.getDate())) {
-        return '';
-    }
-
-    const yy = leftPad4(value.getFullYear());
-    const MM = leftPad2(value.getMonth() + 1);
-    const dd = leftPad2(value.getDate());
-    const hh = leftPad2(value.getHours());
-    const mm = leftPad2(value.getMinutes());
-    return `${yy}-${MM}-${dd}T${hh}:${mm}`;
-};
-
-// yyyy-MM-ddThh:mm
-const dateTimeRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;
-
-/**
- * Converts a date from the Redux store, with timezone, to a date string
- * without timezone for use in an <input type="datetime-local" />.
- *
- * @param {Date | String} value date string or object
- */
-const formatDateTime = (value: string | Date) => {
-    // null, undefined and empty string values should not go through convertDateToString
-    // otherwise, it returns undefined and will make the input an uncontrolled one.
-    if (null == value || '' === value) {
-        return '';
-    }
-
-    if (value instanceof Date) {
-        return convertDateToString(value);
-    }
-    // valid dates should not be converted
-    if (dateTimeRegex.test(value)) {
-        return value;
-    }
-
-    return convertDateToString(new Date(value));
-};
-
-/**
- * Converts a datetime string without timezone to a date object
- * with timezone, using the browser timezone.
- *
- * @param {String} value Date string, formatted as yyyy-MM-ddThh:mm
- * @return {Date}
- */
-
-const parseDateTime = (value: string) => (value ? new Date(value) : null);
+import { formatDateTime, parseDateTime } from '../utils';
 
 const Picker = props => {
     const {
-        PickerComponent,
-        removeClear,
-        defaultValue,
-        format,
-        label,
         className,
-        options,
-        source,
-        resource,
-        helperText,
+        format,
         fullWidth,
+        helperText,
         inputSize,
         inputVariant,
+        label,
         margin,
-        onChange,
+        options,
         onOpen,
         onClose,
         parse,
-        validate,
+        PickerComponent,
+        resource,
+        source,
         stringFormat,
+        toolbarActions,
         ...rest
     } = props;
 
@@ -103,19 +38,16 @@ const Picker = props => {
         id,
         isRequired,
     } = useInput({
-        defaultValue,
         format,
         parse,
-        onChange,
         resource,
         source,
-        validate,
         ...rest,
     });
 
-    const [fragileValue, setFragileValue] = useState(field.value ? new Date(field.value) : null);
+    const [fragileValue, setFragileValue] = React.useState(field.value ? new Date(field.value) : null);
 
-    const handleChange = useCallback(
+    const handleChange = React.useCallback(
         value =>
             Date.parse(value)
                 ? field.onChange('ISO' === stringFormat ? value.toISOString() : value.toString())
@@ -126,8 +58,6 @@ const Picker = props => {
     const hasError = (isTouched || isSubmitted) && invalid;
 
     const renderHelperText = false !== helperText || ((isTouched || isSubmitted) && invalid);
-
-    const toolbarActions = removeClear ? ['cancel', 'today', 'accept'] : ['cancel', 'clear', 'today', 'accept'];
 
     return (
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -181,42 +111,39 @@ const Picker = props => {
 };
 
 Picker.propTypes = {
-    PickerComponent: PropTypes.object.isRequired,
-    removeClear: PropTypes.bool,
-    fullWidth: PropTypes.bool,
+    className: PropTypes.string,
     format: PropTypes.func,
-    parse: PropTypes.func,
+    fullWidth: PropTypes.bool,
+    inputSize: PropTypes.string,
+    inputVariant: PropTypes.string,
     label: PropTypes.string,
+    margin: PropTypes.string,
     onChange: PropTypes.func,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     options: PropTypes.object,
+    parse: PropTypes.func,
+    PickerComponent: PropTypes.object.isRequired,
     resource: PropTypes.string,
-    source: PropTypes.string,
-    inputSize: PropTypes.string,
-    inputVariant: PropTypes.string,
-    labelTime: PropTypes.string,
-    margin: PropTypes.string,
-    variant: PropTypes.string,
-    className: PropTypes.string,
     stringFormat: PropTypes.string,
+    source: PropTypes.string.isRequired,
+    toolbarActions: PropTypes.arrayOf(PropTypes.string),
 };
 
 Picker.defaultProps = {
-    removeClear: false,
+    className: '',
+    format: formatDateTime,
     fullWidth: false,
     inputSize: 'small',
     inputVariant: 'filled',
-    margin: 'dense',
-    stringFormat: 'ISO',
-    format: formatDateTime,
-    parse: parseDateTime,
     label: '',
+    margin: 'dense',
     options: {},
+    parse: parseDateTime,
     resource: '',
     source: '',
-    labelTime: '',
-    className: '',
+    stringFormat: 'ISO',
+    toolbarActions: ['cancel', 'clear', 'today', 'accept'],
 };
 
 export default Picker;
