@@ -10,7 +10,7 @@ interface CustomPickersActionBarProps extends PickersActionBarProps {
 }
 
 const CustomActionBar = (props: CustomPickersActionBarProps) => {
-    const { onAccept, onClear, onCancel, actions, sx, handleChange, setFragileValue } = props;
+    const { onAccept, onClear, onCancel, actions, handleChange, setFragileValue } = props;
     const localeText = useLocaleText();
 
     if (null == actions || 0 === actions.length) {
@@ -73,7 +73,7 @@ const CustomActionBar = (props: CustomPickersActionBarProps) => {
         }
     });
 
-    return <DialogActions sx={sx}>{actionButtons}</DialogActions>;
+    return <DialogActions {...props}>{actionButtons}</DialogActions>;
 };
 
 export default CustomActionBar;

@@ -1,5 +1,9 @@
 # react-admin-mui-datepickers Changelog
 
+## 1.0.2
+
+-   Pass all props to DialogActions from CustomActionBar
+
 ## 1.0.1
 
 -   Removed @emotion/styled and @emotion/react dependencies
