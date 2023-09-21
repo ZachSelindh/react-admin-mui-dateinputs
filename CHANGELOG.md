@@ -4,3 +4,4 @@
 
 -   Imported code from project
 -   npm init
+-   Completed initial build, added README

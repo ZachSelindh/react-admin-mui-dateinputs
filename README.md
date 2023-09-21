@@ -48,6 +48,8 @@ These inputs use a "fragile controlled" input strategy in which the picker's val
 
 The action bar at the bottom of the picker can be configured by passing an array of string values representing the desired buttons/functions. See [MUI-X Custom Components](https://mui.com/x/react-date-pickers/custom-components/) for reference.
 
+I decided to use the Mobile variants of each of MUI's pickers, as I found they provided the best user experience. Let me know if I got this wrong by opening a pull request that exposes the Desktop pickers!
+
 This package is inspired by the previous work of [vascofg](https://github.com/vascofg) and [WiXSL](https://github.com/WiXSL), who had created similar packages for react-admin v2 and v3, respectively.
 
 Lastly, I welcome any and all feedback, especially in the form of pull requests and opened issues.
