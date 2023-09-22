@@ -15,7 +15,7 @@ export type PickerProps = CommonInputProps & {
     format?: (val: string | Date) => string | Date | number;
     onClose?: (val: string) => void;
     onOpen?: (val: string) => void;
-    options?: any;
+    pickerOptions?: { [x: string]: any };
     parse?: (val: string) => string | Date | number;
     PickerComponent: typeof MobileDatePicker | typeof MobileTimePicker | typeof MobileDateTimePicker;
     size?: string;
@@ -30,10 +30,9 @@ const Picker = (props: PickerProps) => {
         helperText,
         label,
         margin,
-        options,
+        pickerOptions,
         onClose,
         onOpen,
-        parse,
         PickerComponent,
         resource,
         size,
@@ -51,7 +50,6 @@ const Picker = (props: PickerProps) => {
         id,
         isRequired,
     } = useInput({
-        parse,
         resource,
         source,
         ...rest,
@@ -76,7 +74,7 @@ const Picker = (props: PickerProps) => {
             <PickerComponent
                 {...sanitizeInputRestProps(rest)}
                 {...field}
-                {...options}
+                {...pickerOptions}
                 id={id}
                 label={<FieldTitle label={label} source={source} resource={resource} isRequired={isRequired} />}
                 slots={{
@@ -125,7 +123,7 @@ const Picker = (props: PickerProps) => {
 Picker.propTypes = {
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
-    options: PropTypes.object,
+    pickerOptions: PropTypes.object,
     PickerComponent: PropTypes.object.isRequired,
     stringFormat: PropTypes.string,
     toolbarActions: PropTypes.arrayOf(PropTypes.string),
@@ -137,7 +135,7 @@ Picker.defaultProps = {
     fullWidth: false,
     label: '',
     margin: 'dense',
-    options: {},
+    pickerOptions: {},
     parse: parseDateTime,
     resource: '',
     size: 'small',

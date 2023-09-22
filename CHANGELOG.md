@@ -1,5 +1,9 @@
 # react-admin-mui-dateinputs Changelog
 
+## 1.0.8
+
+-   Change prop options to pickerOptions
+
 ## 1.0.7
 
 -   Include type definitions from tsc in lib
