@@ -44,7 +44,7 @@ All three inputs accept most react-admin input props, including `validate`, `def
 
 Additional functionality can be derived from the prop functions `onOpen` and `onClose`, which are called during their corresponding events. See above example for a simple demonstration.
 
-Props such as `disableFuture`, `mineData`, etc. from MUI's [Date Time Picker props](https://mui.com/x/api/date-pickers/date-time-picker/#props) are passed directly to the underlying picker component through the prop `pickerOptions`.
+Props such as `disableFuture`, `minDate`, etc. from MUI's [Date Time Picker props](https://mui.com/x/api/date-pickers/date-time-picker/#props) are passed directly to the underlying picker component through the prop `pickerOptions`.
 
 These inputs use a "fragile controlled" input strategy in which the picker's value is kept in React state while the picker is open, and the corresponding input's value is only updated when the "Accept" button is clicked. To whit; if you don't complete the date/time/datetime picking process, or click "Cancel", the input's value will not be saved. However, clicking "Today" will select the current date/time/datetime, update the input, and close the picker.
 
