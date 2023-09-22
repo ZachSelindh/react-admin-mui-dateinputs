@@ -1,6 +1,10 @@
 # react-admin-mui-dateinputs Changelog
 
-## 1.0.4
+## 1.0.6
+
+-   Added LICENSE file
+
+## 1.0.5
 
 -   Add Contributing and License sections to readme
 
