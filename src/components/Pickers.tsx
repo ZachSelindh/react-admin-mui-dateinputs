@@ -15,8 +15,8 @@ export type PickerProps = CommonInputProps & {
     format?: (val: string | Date) => string | Date | number;
     onClose?: (val: string) => void;
     onOpen?: (val: string) => void;
-    pickerOptions?: { [x: string]: any };
     parse?: (val: string) => string | Date | number;
+    pickerOptions?: { [x: string]: any };
     PickerComponent: typeof MobileDatePicker | typeof MobileTimePicker | typeof MobileDateTimePicker;
     size?: string;
     stringFormat?: string;
