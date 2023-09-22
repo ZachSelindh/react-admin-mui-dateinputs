@@ -2,7 +2,12 @@
 
 ## 1.0.4
 
+-   Add Contributing and License sections to readme
+
+## 1.0.4
+
 -   Minor changes to README
+
 ## 1.0.3
 
 -   Rename package from react-admin-mui-datepickers
