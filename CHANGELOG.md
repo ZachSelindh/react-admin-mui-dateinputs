@@ -1,5 +1,9 @@
 # react-admin-mui-dateinputs Changelog
 
+## 1.0.7
+
+-   Include type definitions from tsc in lib
+
 ## 1.0.6
 
 -   Added LICENSE file

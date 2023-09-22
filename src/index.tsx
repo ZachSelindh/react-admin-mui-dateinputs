@@ -2,10 +2,14 @@ import React from 'react';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { MobileDateTimePicker } from '@mui/x-date-pickers/MobileDateTimePicker';
-import Picker from './components/Pickers';
+import Picker, { PickerProps } from './components/Pickers';
 
-export const DateInput = props => <Picker PickerComponent={MobileDatePicker} {...props} />;
+export type DateTimeInputProps = Omit<PickerProps, 'PickerComponent'>;
 
-export const TimeInput = props => <Picker PickerComponent={MobileTimePicker} {...props} />;
+export const DateInput = (props: DateTimeInputProps) => <Picker PickerComponent={MobileDatePicker} {...props} />;
 
-export const DateTimeInput = props => <Picker PickerComponent={MobileDateTimePicker} {...props} />;
+export const TimeInput = (props: DateTimeInputProps) => <Picker PickerComponent={MobileTimePicker} {...props} />;
+
+export const DateTimeInput = (props: DateTimeInputProps) => (
+    <Picker PickerComponent={MobileDateTimePicker} {...props} />
+);
