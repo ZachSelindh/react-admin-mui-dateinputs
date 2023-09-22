@@ -6,7 +6,9 @@ export type PickerProps = CommonInputProps & {
     format?: (val: string | Date) => string | Date | number;
     onClose?: (val: string) => void;
     onOpen?: (val: string) => void;
-    options?: any;
+    pickerOptions?: {
+        [x: string]: any;
+    };
     parse?: (val: string) => string | Date | number;
     PickerComponent: typeof MobileDatePicker | typeof MobileTimePicker | typeof MobileDateTimePicker;
     size?: string;
@@ -18,7 +20,7 @@ declare const Picker: {
     propTypes: {
         onOpen: PropTypes.Requireable<(...args: any[]) => any>;
         onClose: PropTypes.Requireable<(...args: any[]) => any>;
-        options: PropTypes.Requireable<object>;
+        pickerOptions: PropTypes.Requireable<object>;
         PickerComponent: PropTypes.Validator<object>;
         stringFormat: PropTypes.Requireable<string>;
         toolbarActions: PropTypes.Requireable<string[]>;
@@ -29,7 +31,7 @@ declare const Picker: {
         fullWidth: boolean;
         label: string;
         margin: string;
-        options: {};
+        pickerOptions: {};
         parse: (value: string) => Date;
         resource: string;
         size: string;
