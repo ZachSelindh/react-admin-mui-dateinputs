@@ -1,33 +1,46 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useInput, FieldTitle, sanitizeInputRestProps, InputHelperText } from 'react-admin';
+import { useInput, FieldTitle, sanitizeInputRestProps, InputHelperText, CommonInputProps } from 'react-admin';
 import InputAdornment from '@mui/material/InputAdornment';
 import Event from '@mui/icons-material/Event';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import type { MobileDatePicker, MobileTimePicker, MobileDateTimePicker } from '@mui/x-date-pickers';
 import CustomActionBar from './CustomActionBar';
 import { formatDateTime, parseDateTime } from '../utils';
 
-const Picker = props => {
+export type PickerProps = CommonInputProps & {
+    className?: string;
+    format?: (val: string | Date) => string | Date | number;
+    onClose?: (val: string) => void;
+    onOpen?: (val: string) => void;
+    options?: any;
+    parse?: (val: string) => string | Date | number;
+    PickerComponent: typeof MobileDatePicker | typeof MobileTimePicker | typeof MobileDateTimePicker;
+    size?: string;
+    stringFormat?: string;
+    toolbarActions?: ('cancel' | 'clear' | 'today' | 'accept')[];
+};
+
+const Picker = (props: PickerProps) => {
     const {
         className,
-        format,
         fullWidth,
         helperText,
-        inputSize,
-        inputVariant,
         label,
         margin,
         options,
-        onOpen,
         onClose,
+        onOpen,
         parse,
         PickerComponent,
         resource,
+        size,
         source,
         stringFormat,
         toolbarActions,
+        variant,
         ...rest
     } = props;
 
@@ -38,7 +51,6 @@ const Picker = props => {
         id,
         isRequired,
     } = useInput({
-        format,
         parse,
         resource,
         source,
@@ -72,8 +84,8 @@ const Picker = props => {
                 }}
                 slotProps={{
                     textField: {
-                        variant: inputVariant,
-                        size: inputSize,
+                        variant,
+                        size,
                         margin,
                         fullWidth,
                         onBlur: field.onBlur,
@@ -111,22 +123,11 @@ const Picker = props => {
 };
 
 Picker.propTypes = {
-    className: PropTypes.string,
-    format: PropTypes.func,
-    fullWidth: PropTypes.bool,
-    inputSize: PropTypes.string,
-    inputVariant: PropTypes.string,
-    label: PropTypes.string,
-    margin: PropTypes.string,
-    onChange: PropTypes.func,
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     options: PropTypes.object,
-    parse: PropTypes.func,
     PickerComponent: PropTypes.object.isRequired,
-    resource: PropTypes.string,
     stringFormat: PropTypes.string,
-    source: PropTypes.string.isRequired,
     toolbarActions: PropTypes.arrayOf(PropTypes.string),
 };
 
@@ -134,16 +135,16 @@ Picker.defaultProps = {
     className: '',
     format: formatDateTime,
     fullWidth: false,
-    inputSize: 'small',
-    inputVariant: 'filled',
     label: '',
     margin: 'dense',
     options: {},
     parse: parseDateTime,
     resource: '',
+    size: 'small',
     source: '',
     stringFormat: 'ISO',
     toolbarActions: ['cancel', 'clear', 'today', 'accept'],
+    variant: 'filled',
 };
 
 export default Picker;
