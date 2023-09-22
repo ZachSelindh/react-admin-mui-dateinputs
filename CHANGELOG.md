@@ -1,5 +1,9 @@
 # react-admin-mui-dateinputs Changelog
 
+## 1.0.9
+
+-   Ran build command for new pick options type
+
 ## 1.0.8
 
 -   Change prop options to pickerOptions

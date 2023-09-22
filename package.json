@@ -1,6 +1,6 @@
 {
     "name": "react-admin-mui-dateinputs",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "MUI date/time pickers for use in react-admin applications",
     "main": "lib/index.js",
     "scripts": {
